@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/SreejithNS/phone-manager/issues"
   },
-  "homepage": "https://github.com/SreejithNS/phone-manager#readme"
+  "homepage": "https://github.com/SreejithNS/phone-manager#readme",
+  "dependencies": {
+    "usb-detection": "^4.0.0"
+  }
 }
