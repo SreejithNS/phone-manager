@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/SreejithNS/phone-manager#readme",
   "dependencies": {
-    "usb-detection": "^4.0.0"
+    "adbkit": "^2.11.0"
   }
 }
