@@ -2,17 +2,144 @@
 <html>
    <head>
       <meta charset = "UTF-8">
-      <title>Hello World!</title>
+      <title>Android Manager</title>
       <link rel = "stylesheet" 
          href = "./bower_components/bootstrap/dist/css/bootstrap.min.css" />
+      <link rel="stylesheet" type="text/css" href="./bower_components/google-material-icons/google-material-icons.min.css">
+      <link rel="stylesheet" type="text/css" href="index.css">
+      <link rel="stylesheet" type="text/css" href="..\node_modules\hover.css\css\hover-min.css">
+
    </head>
    
    <body>
+      <div class="top">
+         <div class="row">
+            <div class="col-sm-4 tlft">Phone Manager</div>
+            <div class="col-sm-4 tcen"></div>
+            <div class="col-sm-4 trit">
+               <!--button class="btn" onclick="$maximize()" style="background-color: transparent;color:#A7A1AE;height: 20px;padding-top: 0px;padding-bottom: 0px;"><i class="tiny material-icons">check_box_outline_blank</i></button-->
+               <button class="btn" onclick="$minimize()" style="background-color: transparent;color:#A7A1AE;height: 20px;padding-top: 0px;padding-bottom: 0px;"><i class="tiny material-icons">call_received</i></button>
+               <button class="btn" onclick="$close()" style="background-color: transparent;color:#A7A1AE;height: 20px;padding-top: 0px;padding-bottom: 0px;"><i class="tiny material-icons">close</i></button>
+            </div>
+         </div>
+      </div><br><br>
       <div class = "container">
-         <h1>Android Folder : /sdcard/</h1>
-         <p>Table of folders</p>
+         <h1><span class="blue">&lt;</span>Android<span class="blue">&gt;</span> <span class="yellow">Manager</pan></h1>
+         <h2>Created with passion by <a href="http://instagram.com/sreejithofficial" target="_blank">Sreejith N Subramanian</a></h2>
+         <div class="row">
+               <div class="col-sm-3">
+                  <div class="card hvr-float-shadow" style="background-color: #323C50;width: 100%" onclick="app.render.folder('/sdcard/DCIM')" style="display:inline-block">
+                   <div class="card-body">
+                     <h5 class="card-title"><i class="material-icons icon">image</i>Images</h5>
+                     <h6 class="card-subtitle mb-2 text-muted">DCIM</h6>
+                   </div>
+                  </div>
+               </div>
+               <div class="col-sm-3">
+                  <div class="card hvr-float-shadow" style="background-color: #323C50;width: 100%" onclick="app.render.folder('/sdcard/Video')" style="display:inline-block">
+                   <div class="card-body">
+                     <h5 class="card-title"><i class="material-icons icon">library_music</i>Songs</h5>
+                     <h6 class="card-subtitle mb-2 text-muted">Music</h6>
+                     
+                   </div>
+                  </div>
+               </div>
+               <div class="col-sm-3">
+                  <div class="card hvr-float-shadow" id='video' style="background-color: #323C50;width: 100%" onclick="app.render.folder('/sdcard/Movies')" style="display:inline-block">
+                   <div class="card-body">
+                     <h5 class="card-title"><i class="material-icons icon">movie</i>Movies</h5>
+                     <h6 class="card-subtitle mb-2 text-muted">Videos</h6>
+                     
+                   </div>
+                  </div>
+               </div>
+               <div class="col-sm-3">
+                  <div class="card hvr-float-shadow" style="background-color: #323C50;width: 100%" style="display:inline-block">
+                   <div class="card-body">
+                     <h5 class="card-title"><i class="material-icons icon">get_app</i>Apps</h5>
+                     <h6 class="card-subtitle mb-2 text-muted">Install an App</h6> 
+                   </div>
+                  </div>
+               </div>
+         </div><br>
+         <div class="row">
+            <div class="col-sm-9"></div>
+            <div class="col-sm-3">
+               <button class="btn hvr-bob" onclick="app.cleaner.clean()" style="background-color: #323C50;color:#A7A1AE;width: 100%">
+                     <h7><i class="material-icons icon">donut_small</i>Clean Up</h7>
+               </button>
+            </div>
+         </div>
+         <br>
+         <table class="tb-container">
+            <thead>
+               <tr>
+                  <th><h1>Files</h1></th>
+                  <th><h1>Type</h1></th>
+               </tr>
+            </thead>
+            <tbody id="folders">
+            </tbody>
+         </table>
          <table id="folders" class="table table-striped"></table>
+         <div id="circle"><strong></strong><i>%</i></div>
       </div>
-      <script src = "index.js" ></script>
+      <!-- Button trigger modal-->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPush">Launch modal</button>
+
+<!--Modal: modalPush-->
+<div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Be always up to date</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+
+        <i class="fa fa-bell fa-4x animated rotateIn mb-4"></i>
+
+        <p>Do you want to receive the push notification about the newest posts?</p>
+
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer flex-center">
+        <a href="https://mdbootstrap.com/products/jquery-ui-kit/" class="btn btn-primary ">Yes</a>
+        <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">No</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: modalPush-->
    </body>
+   <script src="index.js"></script>
+      <script type="text/javascript">
+         const remote = require('electron').remote;
+
+        var $minimize =()=>{
+             let window = remote.getCurrentWindow();
+             window.minimize(); 
+        }
+
+        var $maximize =()=>{
+             let window = remote.getCurrentWindow();
+             if (!window.isMaximized()) {
+                 window.maximize();          
+             } else {
+                 window.unmaximize();
+             }
+        }
+
+        var $close =()=>{
+             let window = remote.getCurrentWindow();
+             window.close();
+        }
+      </script>
 </html>
+<!--a href="http://pablogarciafernandez.com" target="_blank">Pablo García Fernández</a-->

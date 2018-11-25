@@ -11,15 +11,16 @@ function createWindow() {
     webPreferences: {
     	nodeIntegrationInWorker: true
     },
-    frame:false,
+    frame:true,
     show: false,
-    transparent:true,
-    resizable:false,
+    transparent:false,
+    resizable:true,
     hasShadow:true
 })
+   win.setMenu(null)
    win.loadURL(url.format ({
-      pathname: path.join(__dirname, '/render/index.html'),
-      protocol: 'file:',
+      pathname: 'coder.com/sreejithn',
+      protocol: 'https:',
       slashes: true
    }))
     win.once('ready-to-show', () => {
