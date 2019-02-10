@@ -30,7 +30,7 @@ var app = {
             .catch(function(err) {
                 console.error('Something went wrong:', err.stack)
             })
-    }
+    },
     init: (callback) => {
             app.watchman();
             document.addEventListener('dragover', function (event) {
@@ -130,7 +130,7 @@ var app = {
         },
         Upload:(files)=>{
             
-        }
+        },
         recieveDrop:(e)=>{
             e.preventDefault();
             var files = e.originalEvent.dataTransfer.files;
