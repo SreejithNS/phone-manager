@@ -19,7 +19,7 @@
   "dependencies": {
     "adbkit": "^2.11.0",
     "hover.css": "^2.3.2",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "jquery-circle-progress": "^1.2.2"
   },
   "devDependencies": {
